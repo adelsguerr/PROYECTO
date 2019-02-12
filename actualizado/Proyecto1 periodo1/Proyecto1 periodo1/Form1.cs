@@ -39,7 +39,7 @@ namespace Proyecto1_periodo1
         {
             if (txtNombre.Text == "" ||  mtxTelefono.Text == "" || mtxDUI.Text == "" || mtxNIT.Text == "" || txtCorreo.Text == "" || cboDepartamento.Text == null || cboCargo.Text == null || mtxSueldo.Text == "" || mtxCodigo.Text=="")
             {
-                MessageBox.Show("Ingrese datos", "falta de informacion");
+                MessageBox.Show("Ingrese datos", "Falta de información");
             }
             else  
             {
@@ -133,43 +133,48 @@ namespace Proyecto1_periodo1
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            txtNombre.Select();
             mtxCodigo.Mask = "99999";
             mtxCodigo.PromptChar = '0';
             //Fecha
-            mtxNacimiento.Mask = "00/00/0000";
-            mtxNacimiento.ValidatingType = typeof(System.DateTime);
-            mtxNacimiento.TypeValidationCompleted += new TypeValidationEventHandler(mtxNacimiento_TypeValidationCompleted);
-            mtxNacimiento.KeyDown += new KeyEventHandler(mtxNacimiento_KeyDown);
-
-            mtxNacimiento.IsAccessible = true;
+            //mtxNacimiento.Mask = "00/00/0000";
+            ////
+            //mtxNacimiento.ValidatingType = typeof(DateTime);
+            //mtxNacimiento.TypeValidationCompleted += new TypeValidationEventHandler(mtxNacimiento_TypeValidationCompleted);
+            //mtxNacimiento.KeyDown += new KeyEventHandler(mtxNacimiento_KeyDown);
+            //mtxNacimiento.IsAccessible = true;
+            
 
         }
 
-        void mtxNacimiento_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
-        {
-            if (!e.IsValidInput)
-            {
-                tipNacimiento.ToolTipTitle = "Fecha Invalida";
-                tipNacimiento.Show("Ingrese una fecha valida mm/dd/aa.", mtxNacimiento, 0, -20, 5000);
-            }
-            else
-            {
-                //Now that the type has passed basic type validation, enforce more specific type rules.
-                DateTime userDate = (DateTime)e.ReturnValue;
-                if (userDate > DateTime.Now)
-                {
-                    tipNacimiento.ToolTipTitle = "Fecha Invalida";
-                    tipNacimiento.Show("Fecha no existente", mtxNacimiento, 0, -20, 5000);
-                    e.Cancel = true;
-                }
-            }
-        }
 
-        // Hide the tooltip if the user starts typing again before the five-second display limit on the tooltip expires.
-        void mtxNacimiento_KeyDown(object sender, KeyEventArgs e)
-        {
-            tipNacimiento.Hide(mtxNacimiento);
-        }
+
+        //void mtxNacimiento_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        //{
+        //    if (!e.IsValidInput)
+        //    {
+        //        tipNacimiento.ToolTipTitle = "Fecha Invalida";
+        //        tipNacimiento.Show("Error", mtxNacimiento, 0, -20, 3000);
+        //    }
+        //    else
+        //    {
+                
+        //        DateTime userDate = (DateTime)e.ReturnValue;
+        //        DateTime fechaLimite = new DateTime(2001,01,01);
+        //        if ((userDate < DateTime.Now) && (DateTime.Today.AddYears(-18).CompareTo(fechaLimite)>=0 ))
+        //        {
+        //            tipNacimiento.ToolTipTitle = "Fecha Invalida";
+        //            tipNacimiento.Show("Debe ser mayor de 18 años", mtxNacimiento, 0, -20, 5000);
+        //            e.Cancel = true;
+        //        }
+        //    }
+        //}
+
+        
+        //void mtxNacimiento_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    tipNacimiento.Hide(mtxNacimiento);
+        //}
 
         //VALIDACIÓN CÓDIGO
 
@@ -215,20 +220,28 @@ namespace Proyecto1_periodo1
             tipNIT.Show("Sólo números", mtxNIT, mtxNIT.Location, 3000);
         }
 
-        private void mtxNIT_Validating(object sender, CancelEventArgs e)
+        private void mtxTelefono_Click(object sender, EventArgs e)
         {
-            string patron = "0000-"+mtxNacimiento+"-000-0";
-            if (Regex.IsMatch(mtxNIT.Text,patron)==false)
-            {
-                e.Cancel = true;
-                mtxNIT.SelectAll();
-                errNIT.SetError(mtxNIT, "No corresponde a la fecha de nacimiento");
-            }
+            mtxTelefono.Focus();
+            mtxTelefono.Select(0, 0);
         }
 
-        private void mtxNIT_Validated(object sender, EventArgs e)
+        private void txtCorreo_Click(object sender, EventArgs e)
         {
-            errNIT.Clear();
+            txtCorreo.Focus();
+            txtCorreo.Select(0, 0);
+        }
+
+        private void mtxDUI_Click(object sender, EventArgs e)
+        {
+            mtxDUI.Focus();
+            mtxDUI.Select(0, 0);
+        }
+
+        private void mtxNIT_Click(object sender, EventArgs e)
+        {
+            mtxNIT.Focus();
+            mtxNIT.Select(0, 0);
         }
     }
 }

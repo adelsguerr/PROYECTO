@@ -75,9 +75,9 @@
             this.tipSueldo = new System.Windows.Forms.ToolTip(this.components);
             this.tipNIT = new System.Windows.Forms.ToolTip(this.components);
             this.errNIT = new System.Windows.Forms.ErrorProvider(this.components);
-            this.mtxNacimiento = new System.Windows.Forms.MaskedTextBox();
-            this.mtxCotratacion = new System.Windows.Forms.MaskedTextBox();
             this.tipNacimiento = new System.Windows.Forms.ToolTip(this.components);
+            this.dtNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.dtContratacion = new System.Windows.Forms.DateTimePicker();
             this.pnlSexo.SuspendLayout();
             this.pnlEstadoCivl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCorreo)).BeginInit();
@@ -243,6 +243,7 @@
             this.mtxTelefono.Name = "mtxTelefono";
             this.mtxTelefono.Size = new System.Drawing.Size(76, 20);
             this.mtxTelefono.TabIndex = 7;
+            this.mtxTelefono.Click += new System.EventHandler(this.mtxTelefono_Click);
             // 
             // lblFechaNacimiento
             // 
@@ -282,6 +283,7 @@
             this.mtxDUI.Name = "mtxDUI";
             this.mtxDUI.Size = new System.Drawing.Size(76, 20);
             this.mtxDUI.TabIndex = 13;
+            this.mtxDUI.Click += new System.EventHandler(this.mtxDUI_Click);
             // 
             // lblNIT
             // 
@@ -302,8 +304,7 @@
             this.mtxNIT.Size = new System.Drawing.Size(146, 20);
             this.mtxNIT.TabIndex = 15;
             this.mtxNIT.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxNIT_MaskInputRejected);
-            this.mtxNIT.Validating += new System.ComponentModel.CancelEventHandler(this.mtxNIT_Validating);
-            this.mtxNIT.Validated += new System.EventHandler(this.mtxNIT_Validated);
+            this.mtxNIT.Click += new System.EventHandler(this.mtxNIT_Click);
             // 
             // btnSalir
             // 
@@ -395,6 +396,7 @@
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(146, 20);
             this.txtCorreo.TabIndex = 31;
+            this.txtCorreo.Click += new System.EventHandler(this.txtCorreo_Click);
             this.txtCorreo.Validating += new System.ComponentModel.CancelEventHandler(this.txtCorreo_Validating);
             this.txtCorreo.Validated += new System.EventHandler(this.txtCorreo_Validated);
             // 
@@ -493,7 +495,7 @@
             // 
             // grpDatosPersonales
             // 
-            this.grpDatosPersonales.Controls.Add(this.mtxNacimiento);
+            this.grpDatosPersonales.Controls.Add(this.dtNacimiento);
             this.grpDatosPersonales.Controls.Add(this.pnlSexo);
             this.grpDatosPersonales.Controls.Add(this.txtNombre);
             this.grpDatosPersonales.Controls.Add(this.lblNombre);
@@ -519,7 +521,7 @@
             // 
             // grpDatosLaborales
             // 
-            this.grpDatosLaborales.Controls.Add(this.mtxCotratacion);
+            this.grpDatosLaborales.Controls.Add(this.dtContratacion);
             this.grpDatosLaborales.Controls.Add(this.mtxCodigo);
             this.grpDatosLaborales.Controls.Add(this.cboDepartamento);
             this.grpDatosLaborales.Controls.Add(this.lblCodigo);
@@ -559,19 +561,19 @@
             // 
             this.errNIT.ContainerControl = this;
             // 
-            // mtxNacimiento
+            // dtNacimiento
             // 
-            this.mtxNacimiento.Location = new System.Drawing.Point(120, 215);
-            this.mtxNacimiento.Name = "mtxNacimiento";
-            this.mtxNacimiento.Size = new System.Drawing.Size(138, 20);
-            this.mtxNacimiento.TabIndex = 32;
+            this.dtNacimiento.Location = new System.Drawing.Point(122, 218);
+            this.dtNacimiento.Name = "dtNacimiento";
+            this.dtNacimiento.Size = new System.Drawing.Size(200, 20);
+            this.dtNacimiento.TabIndex = 32;
             // 
-            // mtxCotratacion
+            // dtContratacion
             // 
-            this.mtxCotratacion.Location = new System.Drawing.Point(122, 109);
-            this.mtxCotratacion.Name = "mtxCotratacion";
-            this.mtxCotratacion.Size = new System.Drawing.Size(138, 20);
-            this.mtxCotratacion.TabIndex = 33;
+            this.dtContratacion.Location = new System.Drawing.Point(122, 105);
+            this.dtContratacion.Name = "dtContratacion";
+            this.dtContratacion.Size = new System.Drawing.Size(200, 20);
+            this.dtContratacion.TabIndex = 39;
             // 
             // Form1
             // 
@@ -658,9 +660,9 @@
         private System.Windows.Forms.ToolTip tipSueldo;
         private System.Windows.Forms.ToolTip tipNIT;
         private System.Windows.Forms.ErrorProvider errNIT;
-        private System.Windows.Forms.MaskedTextBox mtxNacimiento;
-        private System.Windows.Forms.MaskedTextBox mtxCotratacion;
         private System.Windows.Forms.ToolTip tipNacimiento;
+        private System.Windows.Forms.DateTimePicker dtNacimiento;
+        private System.Windows.Forms.DateTimePicker dtContratacion;
     }
 }
 
