@@ -57,13 +57,13 @@ namespace Proyecto1_periodo1
                 mtxNIT.Clear();
                 mtxCodigo.Clear();
                 txtCorreo.Clear();
-                dtpFechaContratacion.Format = DateTimePickerFormat.Long;
-                dtpFechaContratacion.CustomFormat = " ";
+                //dtpFechaContratacion.Format = DateTimePickerFormat.Long;
+                //dtpFechaContratacion.CustomFormat = " ";
                 cboCargo.Text = "";
                 cboDepartamento.ResetText();
                 
-                dtpFechaNacimiento.Format = DateTimePickerFormat.Long;
-                dtpFechaContratacion.CustomFormat = " ";
+                //dtpFechaNacimiento.Format = DateTimePickerFormat.Long;
+                //dtpFechaContratacion.CustomFormat = " ";
                 mtxSueldo.Clear();
                 picFoto.Image = null;
 
@@ -133,29 +133,62 @@ namespace Proyecto1_periodo1
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.mtxCodigo.Mask = "99999";
-            this.mtxCodigo.PromptChar = '0';
-            
+            mtxCodigo.Mask = "99999";
+            mtxCodigo.PromptChar = '0';
+            //Fecha
+            mtxNacimiento.Mask = "00/00/0000";
+            mtxNacimiento.ValidatingType = typeof(System.DateTime);
+            mtxNacimiento.TypeValidationCompleted += new TypeValidationEventHandler(mtxNacimiento_TypeValidationCompleted);
+            mtxNacimiento.KeyDown += new KeyEventHandler(mtxNacimiento_KeyDown);
+
+            mtxNacimiento.IsAccessible = true;
+
+        }
+
+        void mtxNacimiento_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                tipNacimiento.ToolTipTitle = "Fecha Invalida";
+                tipNacimiento.Show("Ingrese una fecha valida mm/dd/aa.", mtxNacimiento, 0, -20, 5000);
+            }
+            else
+            {
+                //Now that the type has passed basic type validation, enforce more specific type rules.
+                DateTime userDate = (DateTime)e.ReturnValue;
+                if (userDate > DateTime.Now)
+                {
+                    tipNacimiento.ToolTipTitle = "Fecha Invalida";
+                    tipNacimiento.Show("Fecha no existente", mtxNacimiento, 0, -20, 5000);
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        // Hide the tooltip if the user starts typing again before the five-second display limit on the tooltip expires.
+        void mtxNacimiento_KeyDown(object sender, KeyEventArgs e)
+        {
+            tipNacimiento.Hide(mtxNacimiento);
         }
 
         //VALIDACIÓN CÓDIGO
 
         private void mtxCodigo_Enter(object sender, EventArgs e)
         {
-            this.mtxCodigo.PromptChar = '_';
-            this.mtxCodigo.Text = this.mtxCodigo.Text.TrimStart();
+            mtxCodigo.PromptChar = '_';
+            mtxCodigo.Text = mtxCodigo.Text.TrimStart();
         }
 
         private void mtxCodigo_Leave(object sender, EventArgs e)
         {
-            this.mtxCodigo.Text = this.mtxCodigo.Text.PadLeft(this.mtxCodigo.Mask.Length);
-            this.mtxCodigo.PromptChar = '0';
+            mtxCodigo.Text = mtxCodigo.Text.PadLeft(mtxCodigo.Mask.Length);
+            mtxCodigo.PromptChar = '0';
         }
 
         private void mtxCodigo_Click(object sender, EventArgs e)
         {
-            this.mtxCodigo.Focus();
-            this.mtxCodigo.Select(0, 0);
+            mtxCodigo.Focus();
+            mtxCodigo.Select(0, 0);
         }
 
         private void mtxCodigo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -180,6 +213,22 @@ namespace Proyecto1_periodo1
         {
             tipNIT.ToolTipTitle = "Entrada Incorrecta";
             tipNIT.Show("Sólo números", mtxNIT, mtxNIT.Location, 3000);
+        }
+
+        private void mtxNIT_Validating(object sender, CancelEventArgs e)
+        {
+            string patron = "0000-"+mtxNacimiento+"-000-0";
+            if (Regex.IsMatch(mtxNIT.Text,patron)==false)
+            {
+                e.Cancel = true;
+                mtxNIT.SelectAll();
+                errNIT.SetError(mtxNIT, "No corresponde a la fecha de nacimiento");
+            }
+        }
+
+        private void mtxNIT_Validated(object sender, EventArgs e)
+        {
+            errNIT.Clear();
         }
     }
 }

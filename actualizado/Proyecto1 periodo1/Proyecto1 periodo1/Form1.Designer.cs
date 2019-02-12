@@ -64,8 +64,6 @@
             this.lblCargo = new System.Windows.Forms.Label();
             this.cboCargo = new System.Windows.Forms.ComboBox();
             this.picFoto = new System.Windows.Forms.PictureBox();
-            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaContratacion = new System.Windows.Forms.DateTimePicker();
             this.nudPuntuacion = new System.Windows.Forms.NumericUpDown();
             this.btnExaminar = new System.Windows.Forms.Button();
             this.lblExaminar = new System.Windows.Forms.Label();
@@ -76,6 +74,10 @@
             this.tipCodigo = new System.Windows.Forms.ToolTip(this.components);
             this.tipSueldo = new System.Windows.Forms.ToolTip(this.components);
             this.tipNIT = new System.Windows.Forms.ToolTip(this.components);
+            this.errNIT = new System.Windows.Forms.ErrorProvider(this.components);
+            this.mtxNacimiento = new System.Windows.Forms.MaskedTextBox();
+            this.mtxCotratacion = new System.Windows.Forms.MaskedTextBox();
+            this.tipNacimiento = new System.Windows.Forms.ToolTip(this.components);
             this.pnlSexo.SuspendLayout();
             this.pnlEstadoCivl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCorreo)).BeginInit();
@@ -84,6 +86,7 @@
             this.grpDatosPersonales.SuspendLayout();
             this.grpDatosLaborales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errNombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errNIT)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNombre
@@ -277,7 +280,7 @@
             this.mtxDUI.Margin = new System.Windows.Forms.Padding(2);
             this.mtxDUI.Mask = "00000000-0";
             this.mtxDUI.Name = "mtxDUI";
-            this.mtxDUI.Size = new System.Drawing.Size(68, 20);
+            this.mtxDUI.Size = new System.Drawing.Size(76, 20);
             this.mtxDUI.TabIndex = 13;
             // 
             // lblNIT
@@ -296,9 +299,11 @@
             this.mtxNIT.Margin = new System.Windows.Forms.Padding(2);
             this.mtxNIT.Mask = "0000-000000-000-0";
             this.mtxNIT.Name = "mtxNIT";
-            this.mtxNIT.Size = new System.Drawing.Size(95, 20);
+            this.mtxNIT.Size = new System.Drawing.Size(146, 20);
             this.mtxNIT.TabIndex = 15;
             this.mtxNIT.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxNIT_MaskInputRejected);
+            this.mtxNIT.Validating += new System.ComponentModel.CancelEventHandler(this.mtxNIT_Validating);
+            this.mtxNIT.Validated += new System.EventHandler(this.mtxNIT_Validated);
             // 
             // btnSalir
             // 
@@ -452,23 +457,6 @@
             this.picFoto.TabIndex = 29;
             this.picFoto.TabStop = false;
             // 
-            // dtpFechaNacimiento
-            // 
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(123, 214);
-            this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(2);
-            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(202, 20);
-            this.dtpFechaNacimiento.TabIndex = 35;
-            this.dtpFechaNacimiento.Value = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
-            // 
-            // dtpFechaContratacion
-            // 
-            this.dtpFechaContratacion.Location = new System.Drawing.Point(134, 108);
-            this.dtpFechaContratacion.Margin = new System.Windows.Forms.Padding(2);
-            this.dtpFechaContratacion.Name = "dtpFechaContratacion";
-            this.dtpFechaContratacion.Size = new System.Drawing.Size(202, 20);
-            this.dtpFechaContratacion.TabIndex = 36;
-            // 
             // nudPuntuacion
             // 
             this.nudPuntuacion.Location = new System.Drawing.Point(86, 67);
@@ -479,7 +467,7 @@
             0,
             0});
             this.nudPuntuacion.Name = "nudPuntuacion";
-            this.nudPuntuacion.Size = new System.Drawing.Size(90, 20);
+            this.nudPuntuacion.Size = new System.Drawing.Size(92, 20);
             this.nudPuntuacion.TabIndex = 37;
             // 
             // btnExaminar
@@ -505,10 +493,10 @@
             // 
             // grpDatosPersonales
             // 
+            this.grpDatosPersonales.Controls.Add(this.mtxNacimiento);
             this.grpDatosPersonales.Controls.Add(this.pnlSexo);
             this.grpDatosPersonales.Controls.Add(this.txtNombre);
             this.grpDatosPersonales.Controls.Add(this.lblNombre);
-            this.grpDatosPersonales.Controls.Add(this.dtpFechaNacimiento);
             this.grpDatosPersonales.Controls.Add(this.pnlEstadoCivl);
             this.grpDatosPersonales.Controls.Add(this.lblTelefono);
             this.grpDatosPersonales.Controls.Add(this.mtxTelefono);
@@ -531,13 +519,13 @@
             // 
             // grpDatosLaborales
             // 
+            this.grpDatosLaborales.Controls.Add(this.mtxCotratacion);
             this.grpDatosLaborales.Controls.Add(this.mtxCodigo);
             this.grpDatosLaborales.Controls.Add(this.cboDepartamento);
             this.grpDatosLaborales.Controls.Add(this.lblCodigo);
             this.grpDatosLaborales.Controls.Add(this.lblDepartamento);
             this.grpDatosLaborales.Controls.Add(this.nudPuntuacion);
             this.grpDatosLaborales.Controls.Add(this.lblFechaContratacion);
-            this.grpDatosLaborales.Controls.Add(this.dtpFechaContratacion);
             this.grpDatosLaborales.Controls.Add(this.lblPuntuacion);
             this.grpDatosLaborales.Controls.Add(this.cboCargo);
             this.grpDatosLaborales.Controls.Add(this.lblSueldo);
@@ -566,6 +554,24 @@
             // errNombre
             // 
             this.errNombre.ContainerControl = this;
+            // 
+            // errNIT
+            // 
+            this.errNIT.ContainerControl = this;
+            // 
+            // mtxNacimiento
+            // 
+            this.mtxNacimiento.Location = new System.Drawing.Point(120, 215);
+            this.mtxNacimiento.Name = "mtxNacimiento";
+            this.mtxNacimiento.Size = new System.Drawing.Size(138, 20);
+            this.mtxNacimiento.TabIndex = 32;
+            // 
+            // mtxCotratacion
+            // 
+            this.mtxCotratacion.Location = new System.Drawing.Point(122, 109);
+            this.mtxCotratacion.Name = "mtxCotratacion";
+            this.mtxCotratacion.Size = new System.Drawing.Size(138, 20);
+            this.mtxCotratacion.TabIndex = 33;
             // 
             // Form1
             // 
@@ -599,6 +605,7 @@
             this.grpDatosLaborales.ResumeLayout(false);
             this.grpDatosLaborales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errNombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errNIT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -640,8 +647,6 @@
         private System.Windows.Forms.ComboBox cboCargo;
         private System.Windows.Forms.Label lblCargo;
         private System.Windows.Forms.PictureBox picFoto;
-        private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
-        private System.Windows.Forms.DateTimePicker dtpFechaContratacion;
         private System.Windows.Forms.NumericUpDown nudPuntuacion;
         private System.Windows.Forms.Button btnExaminar;
         private System.Windows.Forms.Label lblExaminar;
@@ -652,6 +657,10 @@
         private System.Windows.Forms.ToolTip tipCodigo;
         private System.Windows.Forms.ToolTip tipSueldo;
         private System.Windows.Forms.ToolTip tipNIT;
+        private System.Windows.Forms.ErrorProvider errNIT;
+        private System.Windows.Forms.MaskedTextBox mtxNacimiento;
+        private System.Windows.Forms.MaskedTextBox mtxCotratacion;
+        private System.Windows.Forms.ToolTip tipNacimiento;
     }
 }
 
