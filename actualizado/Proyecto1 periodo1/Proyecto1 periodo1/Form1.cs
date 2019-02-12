@@ -152,5 +152,7 @@ namespace Proyecto1_periodo1
             this.mtxCodigo.Focus();
             this.mtxCodigo.Select(0, 0);
         }
+
+
     }
 }

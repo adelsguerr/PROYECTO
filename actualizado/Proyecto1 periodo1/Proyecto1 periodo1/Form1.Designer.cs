@@ -552,6 +552,9 @@
             this.mtxCodigo.Name = "mtxCodigo";
             this.mtxCodigo.Size = new System.Drawing.Size(92, 20);
             this.mtxCodigo.TabIndex = 38;
+            this.mtxCodigo.Click += new System.EventHandler(this.mtxCodigo_Click);
+            this.mtxCodigo.Enter += new System.EventHandler(this.mtxCodigo_Enter);
+            this.mtxCodigo.Leave += new System.EventHandler(this.mtxCodigo_Leave);
             // 
             // errNombre
             // 
@@ -576,6 +579,7 @@
             this.Name = "Form1";
             this.Text = "Achilles Recruitment";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.pnlSexo.ResumeLayout(false);
             this.pnlSexo.PerformLayout();
             this.pnlEstadoCivl.ResumeLayout(false);
