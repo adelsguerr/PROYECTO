@@ -36,7 +36,7 @@ namespace Proyecto1_periodo1
         //falta limpieza de la puntuacion,y las fechas de nacimiento y contratacion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "" ||  mtxTelefono.Text == "" || mtxDUI.Text == "" || mtxNIT.Text == "" || txtCorreo.Text == "" || cboDepartamento.Text == null || cboCargo.Text == null || mtxSueldo.Text == "")
+            if (txtNombre.Text == "" ||  mtxTelefono.Text == "" || mtxDUI.Text == "" || mtxNIT.Text == "" || txtCorreo.Text == "" || cboDepartamento.Text == null || cboCargo.Text == null || mtxSueldo.Text == "" || mtxCodigo.Text=="")
             {
                 MessageBox.Show("Ingrese datos", "falta de informacion");
             }
@@ -54,6 +54,7 @@ namespace Proyecto1_periodo1
                 mtxTelefono.Clear();
                 mtxDUI.Clear();
                 mtxNIT.Clear();
+                mtxCodigo.Clear();
                 txtCorreo.Clear();
                 dtpFechaContratacion.Format = DateTimePickerFormat.Long;
                 dtpFechaContratacion.CustomFormat = " ";
