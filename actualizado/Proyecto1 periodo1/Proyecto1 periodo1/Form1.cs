@@ -17,6 +17,7 @@ namespace Proyecto1_periodo1
         public Form1()
         {
             InitializeComponent();
+            
         }
         //BOTON DE SALIR
         private void btnSalir_Click(object sender, EventArgs e)
@@ -129,12 +130,15 @@ namespace Proyecto1_periodo1
             errNombre.Clear();
         }
 
-        //VALIDACIÓN CÓDIGO
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             this.mtxCodigo.Mask = "99999";
             this.mtxCodigo.PromptChar = '0';
+            
         }
+
+        //VALIDACIÓN CÓDIGO
 
         private void mtxCodigo_Enter(object sender, EventArgs e)
         {
@@ -154,6 +158,22 @@ namespace Proyecto1_periodo1
             this.mtxCodigo.Select(0, 0);
         }
 
+        private void mtxCodigo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            tipNIT.ToolTipTitle = "Entrada Incorrecta";
+            tipNIT.Show("Sólo números",mtxNIT,mtxNIT.Location, 5000);
+        }
 
+        private void mtxSueldo_Click(object sender, EventArgs e)
+        {
+            mtxSueldo.Focus();
+            mtxSueldo.Select(0, 0);
+        }
+
+        private void mtxSueldo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            tipSueldo.ToolTipTitle = "Entrada Incorrecta";
+            tipSueldo.Show("Sólo números", mtxSueldo, mtxSueldo.Location, 5000);
+        }
     }
 }

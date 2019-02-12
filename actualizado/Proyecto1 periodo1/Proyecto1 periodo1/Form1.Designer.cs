@@ -73,6 +73,8 @@
             this.grpDatosLaborales = new System.Windows.Forms.GroupBox();
             this.mtxCodigo = new System.Windows.Forms.MaskedTextBox();
             this.errNombre = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tipNIT = new System.Windows.Forms.ToolTip(this.components);
+            this.tipSueldo = new System.Windows.Forms.ToolTip(this.components);
             this.pnlSexo.SuspendLayout();
             this.pnlEstadoCivl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCorreo)).BeginInit();
@@ -365,6 +367,8 @@
             this.mtxSueldo.Name = "mtxSueldo";
             this.mtxSueldo.Size = new System.Drawing.Size(66, 20);
             this.mtxSueldo.TabIndex = 28;
+            this.mtxSueldo.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxSueldo_MaskInputRejected);
+            this.mtxSueldo.Click += new System.EventHandler(this.mtxSueldo_Click);
             // 
             // btnGuardar
             // 
@@ -552,6 +556,7 @@
             this.mtxCodigo.Name = "mtxCodigo";
             this.mtxCodigo.Size = new System.Drawing.Size(92, 20);
             this.mtxCodigo.TabIndex = 38;
+            this.mtxCodigo.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxCodigo_MaskInputRejected);
             this.mtxCodigo.Click += new System.EventHandler(this.mtxCodigo_Click);
             this.mtxCodigo.Enter += new System.EventHandler(this.mtxCodigo_Enter);
             this.mtxCodigo.Leave += new System.EventHandler(this.mtxCodigo_Leave);
@@ -642,6 +647,8 @@
         private System.Windows.Forms.GroupBox grpDatosLaborales;
         private System.Windows.Forms.ErrorProvider errNombre;
         private System.Windows.Forms.MaskedTextBox mtxCodigo;
+        private System.Windows.Forms.ToolTip tipNIT;
+        private System.Windows.Forms.ToolTip tipSueldo;
     }
 }
 
