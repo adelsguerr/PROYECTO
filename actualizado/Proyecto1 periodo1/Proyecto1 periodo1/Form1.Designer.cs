@@ -73,8 +73,9 @@
             this.grpDatosLaborales = new System.Windows.Forms.GroupBox();
             this.mtxCodigo = new System.Windows.Forms.MaskedTextBox();
             this.errNombre = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tipNIT = new System.Windows.Forms.ToolTip(this.components);
+            this.tipCodigo = new System.Windows.Forms.ToolTip(this.components);
             this.tipSueldo = new System.Windows.Forms.ToolTip(this.components);
+            this.tipNIT = new System.Windows.Forms.ToolTip(this.components);
             this.pnlSexo.SuspendLayout();
             this.pnlEstadoCivl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCorreo)).BeginInit();
@@ -297,6 +298,7 @@
             this.mtxNIT.Name = "mtxNIT";
             this.mtxNIT.Size = new System.Drawing.Size(95, 20);
             this.mtxNIT.TabIndex = 15;
+            this.mtxNIT.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxNIT_MaskInputRejected);
             // 
             // btnSalir
             // 
@@ -647,8 +649,9 @@
         private System.Windows.Forms.GroupBox grpDatosLaborales;
         private System.Windows.Forms.ErrorProvider errNombre;
         private System.Windows.Forms.MaskedTextBox mtxCodigo;
-        private System.Windows.Forms.ToolTip tipNIT;
+        private System.Windows.Forms.ToolTip tipCodigo;
         private System.Windows.Forms.ToolTip tipSueldo;
+        private System.Windows.Forms.ToolTip tipNIT;
     }
 }
 

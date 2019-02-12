@@ -160,8 +160,8 @@ namespace Proyecto1_periodo1
 
         private void mtxCodigo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            tipNIT.ToolTipTitle = "Entrada Incorrecta";
-            tipNIT.Show("Sólo números",mtxNIT,mtxNIT.Location, 5000);
+            tipCodigo.ToolTipTitle = "Entrada Incorrecta";
+            tipCodigo.Show("Sólo números",mtxCodigo,mtxCodigo.Location, 3000);
         }
 
         private void mtxSueldo_Click(object sender, EventArgs e)
@@ -173,7 +173,13 @@ namespace Proyecto1_periodo1
         private void mtxSueldo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
             tipSueldo.ToolTipTitle = "Entrada Incorrecta";
-            tipSueldo.Show("Sólo números", mtxSueldo, mtxSueldo.Location, 5000);
+            tipSueldo.Show("Sólo números", mtxSueldo, mtxSueldo.Location, 3000);
+        }
+
+        private void mtxNIT_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            tipNIT.ToolTipTitle = "Entrada Incorrecta";
+            tipNIT.Show("Sólo números", mtxNIT, mtxNIT.Location, 3000);
         }
     }
 }
